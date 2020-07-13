@@ -124,3 +124,4 @@ Open the project's dir in the terminal and:
    for record in records:
        print(record.id) #prints the record's ID 
    ```"# GlideryShop" 
+"# GlideryShop" 
