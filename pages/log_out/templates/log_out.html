@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'התנתקות' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('log_out.static', filename='css/log_out.css') }}"/>
+{% endblock %}
+
+{% block page_body_main_content %}
+    <main class = "general-style">
+            <h1>התנתקות</h1>
+    </main>
+
+{% endblock %}
+
+{% block page_body_footer %}{% endblock %}
+
+{% block page_body_js %}
+{% endblock %}

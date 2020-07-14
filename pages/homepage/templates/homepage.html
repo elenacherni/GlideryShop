@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'עמוד הבית' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('homepage.static', filename='css/homepage.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('homepage.static', filename='css/slideShow.css') }}"/>
+
+{% endblock %}
+
+{% block page_body_main_content %}
+    <main class = "general-style main">
+        <div dir="ltr" class = "slideShow">
+            <div class="slideshow-container this">
+
+                <div class="mySlides fade">
+                    <div class="numbertext">1 / 3</div>
+                    <img src="{{ url_for('homepage.static', filename='media/oreoSlide.png') }}" alt = "טעם חדש">
+                </div>
+
+                <div class="mySlides fade">
+                    <div class="numbertext">2 / 3</div>
+                    <img src="{{ url_for('homepage.static', filename='media/cartSlide.png') }}"alt = "שירות דוכנים" >
+                </div>
+
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+            <br/>
+
+            <div class = "dots" >
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+            </div>
+
+        </div>
+
+        <br/>
+        <div class = "img-border">
+            <div class="img-container">
+                <a href="/order?tab=cookie">
+                    <img src="{{ url_for('homepage.static', filename='media/ice-cream-sandwich.jpg') }}" alt="קוקילידה" >
+                    <button class="button">קוקילידה</button>
+                </a>
+            </div>
+            <div class="img-container">
+                <a href="/order?tab=icecream">
+                    <img src="{{ url_for('homepage.static', filename='media/ice_cream.jpg') }}" alt="גלידה" >
+                    <button class="button">גלידה</button>
+                </a>
+            </div>
+            <div class="img-container">
+                <a href="/order?tab=yogurt">
+                    <img src="{{ url_for('homepage.static', filename='media/yogurt.jpg') }}" alt="יוגורט" >
+                    <button class="button">יוגורט</button>
+                </a>
+            </div>
+        </div>
+    </main>
+    <br/>
+{% endblock %}
+{% block page_body_js %}
+    <script src="{{ url_for('homepage.static', filename='js/homepage.js') }}"></script>
+{% endblock %}
+
+
+

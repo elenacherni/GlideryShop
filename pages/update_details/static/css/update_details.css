@@ -1,0 +1,68 @@
+body .form  {font-family: Calibri, Helvetica, sans-serif;}
+* {box-sizing: border-box}
+
+/* Full-width input fields */
+.form input[type=text], input[type=password], input[type=date] , input[type=int]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.form input[type=text]:focus, input[type=password]:focus, input[type=date]:focus , input[type=int]:focus  {
+    background-color: #ddd;
+    outline: none;
+}
+
+.form hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+
+.form button:hover {
+    opacity:0.6;
+}
+
+.form .container {
+    padding: 16px;
+}
+
+.form .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+.form{
+    height: 30%;
+    width: 70%;
+    padding: 30px;
+
+}
+
+form{
+    margin: 30px;
+    border:1px solid #ccc
+}
+
+main{
+    background-color: #fefefe;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.return-btn{
+    text-decoration: none;
+    color: #ffffff;
+    position: relative;
+}
+
+.submit-btn{
+    width: 100%;
+}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'פרופיל משתמש' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('profile.static', filename='css/profile.css') }}"/>
+{% endblock %}
+
+{% block page_body_main_content %}
+    <main class = "general-style">
+        <h1>פרופיל משתמש</h1>
+        <p class = "customer-name">
+            שם:  {{customer.FirstName}} {{customer.LastName}}
+        </p>
+        <p class = "customer-email">
+            דואר אלקטרוני: {{customer.Email}}
+        </p>
+        <p class = "customer-address">
+            {% if customer.City %}
+            כתובת:   {{customer.Street}} {{customer.StreetNumber}} {{customer.City}}
+            {% endif %}
+        </p>
+        <p class = "customer-phone">
+            {% if customer.PhoneNumber %}
+            מספר טלפון: {{customer.PhoneNumber}}
+            {% endif %}
+        </p>
+
+        <a href="/update_details"><button type="button" class=" return-btn button ">עדכן פרטים</button></a>
+
+
+        {% if Order_Details %}
+            <h2>
+                הזמנות קודמות
+            </h2>
+            <table>
+            <tr>
+                <th>מספר אסמכתא</th>
+                <th>תאריך</th>
+                <th>סכום</th>
+            </tr>
+            {% for detail in Order_Details %}
+                <tr>
+                    <td>{{ detail.OrderID }}</td>
+                    <td>{{ detail.OrderDate }}</td>
+                    <td>{{ detail.totalPrice }}</td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        </table>
+
+    </main>
+{% endblock %}
+
+{% block page_body_footer %}{% endblock %}
+
+{% block page_body_js %}
+    <script src="{{ url_for('profile.static', filename='js/profile.js') }}"></script>
+{% endblock %}

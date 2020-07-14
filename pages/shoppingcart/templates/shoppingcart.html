@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'סל קניות' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('shoppingcart.static', filename='css/shoppingcart.css') }}"/>
+{% endblock %}
+
+{% block page_body_main_content %}
+    <h1>סל הקניות</h1>
+    <div class="summary">
+        <form method="GET" action="/deleteCart">
+            <div class="sum-cont">
+                <h5>סל קניות <span class="price">{% if totalAmount %}{{ totalAmount }}{% endif %} <i class="fa fa-shopping-cart"></i></span></h5>
+                {% if iceCreams %}
+                    {% set ns = namespace(prevID=0) %}
+                    {% for product in iceCreams %}
+                        {% if ns.prevID==product.productID %}
+                            <span>,</span>
+                        {% endif %}
+                        {% if ns.prevID!=product.productID %}
+                            <br>
+                            <input id="{{product.productID}}" value="{{product.productID}}" type="checkbox" name="delete-icecream">
+                            <label for="{{product.productID}}">{{product.productName}} | </label>
+                            <span>{{product.Amount}} יחידות </span>
+                            <span class="price"> {{product.Price * product.Amount}} ש"ח </span>
+                            <span> | טעמי גלידה שנבחרו: </span>
+                        {% endif %}
+                        <span class="tastes">{{product.Flavour}}</span>
+                        {% set ns.prevID=product.productID %}
+                    {% endfor %}
+                {% endif %}
+                {% if yogurts %}
+                    {% set ns = namespace(prevID=0) %}
+                    {% for product in yogurts %}
+                        {% if ns.prevID==product.productID %}
+                        <span>,</span>
+                        {% endif %}
+                        {% if ns.prevID!=product.productID %}
+                            <br>
+                            <input id="{{product.productID}}" value="{{product.productID}}" type="checkbox" name="delete-yogurt">
+                            <label for="{{product.productID}}">{{product.productName}} | </label>
+                            <span>{{product.Amount}} יחידות </span>
+                            <span class="price"> {{product.Price * product.Amount}} ש"ח </span>
+                            {% if toppings %}
+                                <span> | תוספות שנבחרו: </span>
+                                {% for topping in toppings %}
+                                    {% if product.productID==topping.productID %}
+                                        <span>{{ topping.ToppingName }},</span>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                            <span> | טעמי יוגורט שנבחרו: </span>
+                        {% endif %}
+                        <span class="tastes">{{product.Flavour}}</span>
+                        {% set ns.prevID=product.productID %}
+                    {% endfor %}
+                {% endif %}
+                {% if cookies %}
+                    {% for product in cookies %}
+                        <br>
+                        <input id="{{product.productID}}" value="{{product.productID}}" type="checkbox" name="delete-cookie">
+                        <label for="{{product.productID}}">{{product.productName}} | </label>
+                        <span>{{product.Amount}} יחידות </span>
+                        <span class="price"> {{product.Price * product.Amount}} ש"ח </span>
+                        <span> | סוג העוגיה שנבחר: </span>
+                        <span class="tastes">{{product.CookieType}}</span>
+                        <span> | טעם המילוי שנבחר: </span>
+                        <span class="tastes">{{product.Flavour}}</span>
+                    {% endfor %}
+                {% endif %}
+                <hr>
+                <p>סה"כ לתשלום <span class="price"><b>{% if totalPrice %}{{ totalPrice }}{% endif %} ש"ח </b></span></p>
+            </div>
+            <input id="submitRemove" type="submit" value="submitRemove"/>
+        </form>
+    </div>
+    <br>
+    <div class="buttons-area">
+        <button onclick="checkStatusRemove()" class="button"><span><i class="fa fa-remove"></i> הסר פריטים </span></button>
+        <button class="button" name="back-to-order" onclick="window.location='/order'"><i class="fa fa-cart-plus"></i> המשך לרכוש </button>
+        <button class="button" name="move-to-payment" onclick="window.location='/payment'"><i class="fa fa-check"></i> מעבר לתשלום </button>
+    </div>
+{% endblock %}
+
+{% block page_body_footer %}{% endblock %}
+
+{% block page_body_js %}
+    <script src="{{ url_for('shoppingcart.static', filename='js/shoppingcart.js') }}"></script>
+{% endblock %}

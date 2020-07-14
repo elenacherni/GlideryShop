@@ -1,0 +1,78 @@
+
+form {border: 3px solid #f1f1f1;}
+
+.form input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.form button {
+    margin: 8px 0;
+    width: 100%;
+}
+
+.form .signin {
+    padding: 16px;
+}
+
+.form span.psw {
+    padding-top: 16px;
+}
+
+.form{
+    width: 45%;
+    padding: 30px;
+    border: 1px solid #ccc;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+
+}
+
+form{
+    height: 75%;
+}
+
+.signup-btn{
+    text-decoration: none;
+    font-size: 25px;
+    color: #ffffff;
+    font-family: Calibri;
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+}
+
+main{
+    background-color: #fefefe;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: stretch;
+}
+.form{
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+.signup{
+    border: 1px solid #ccc;
+    width: 45%;
+    padding: 30px;
+    border: 1px solid #ccc;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-image: url("/log_out/media/log_out.jpg");
+    background-size: cover; /* Resize the background image to cover the entire container */
+    background-position: center; /* Center the image */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 25px;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}

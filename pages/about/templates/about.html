@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'אודות' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('about.static', filename='css/about.css') }}"/>
+{% endblock %}
+
+{% block page_body_main_content %}
+    <main class = "general-style">
+        <h1>אודותינו</h1>
+        <div class = "description">
+            לגלידרי ישנו סניף יחיד ומיוחד בלב ליבה של רוטשילד תל-אביב. החנות מציעה הרכבת גלידה, יוגורט וקוקילידה בהתאמה אישית, כולל בחירת תוספות וטעמים מגוונים. ניתן להגיע ישירות לסניף או להזמין משלוח. כמו כן לחברה שירות הפעלת דוכני גלידה, יוגורט וקוקילידה לאירועים. הסניף פועל גבולות גוש דן שבמרכז הארץ.
+            <br/> <br/>
+            כל המוצרים של גלידרי מיוצרים במקום מדי יום בעבודת יד ומחומרי גלם מובחרים ואיכותיים ביותר.
+            <br/>
+        </div>
+        <br/>
+        <img src="{{ url_for('about.static', filename='media/about.jpg') }}" alt="גלידה-אודות" >
+    </main>
+
+{% endblock %}
+
+{% block page_body_footer %}{% endblock %}
+
+{% block page_body_js %}{% endblock %}

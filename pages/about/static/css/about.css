@@ -1,0 +1,25 @@
+
+@import "variables.css";
+
+h1{
+    text-align: center;
+}
+main{
+    display: flex;
+    align-items:center;
+    background-color: var(--main-bg-color);
+    flex-direction: column;
+    padding: 50px 0px 50px 0px;
+}
+.description{
+    font-size: 25px;
+    padding-right: 120px;
+    padding-left: 120px;
+}
+
+main img{
+    height: 60%;
+    width: 60%;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
+
+}

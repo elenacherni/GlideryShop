@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'אישור הזמנה' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('confirmOrder.static', filename='css/confirmOrder.css') }}"/>
+{% endblock %}
+
+{% block page_body_main_content %}
+        <div class="confirm">
+            <h1>ההזמנה בוצעה בהצלחה!</h1>
+            <section class="photo"><img src="{{ url_for('confirmOrder.static', filename='media/img/delivery.jpg') }}" alt="delivery_photo"></section>
+            <h3>המשלוח יגיע בעוד 30 דקות..</h3>
+        </div>
+{% endblock %}
+
+{% block page_body_footer %}{% endblock %}
+
+{% block page_body_js %}
+    <script src="{{ url_for('confirmOrder.static', filename='js/confirmOrder.js') }}"></script>
+{% endblock %}

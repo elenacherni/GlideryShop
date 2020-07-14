@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'תשלום' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('payment.static', filename='css/payment.css') }}"/>
+{% endblock %}
+
+{% block page_body_main_content %}
+<div class="description">
+    <h1>תשלום מאובטח</h1>
+</div>
+</div>
+<div class="delivery-dit">
+    <h3>פרטי משלוח</h3>
+    <div class="full-width">
+        <form method="POST" action="/payment-form">
+            <input type="text" name="firstname" value="{{customer.FirstName}}" placeholder="שם פרטי" required>
+            <input type="text" name="lastname" value="{{customer.LastName}}" placeholder="שם משפחה" required>
+            <br>
+            <input type="text" name="email" value="{{customer.Email}}" placeholder="כתובת אימייל" readonly>
+            <input type="text" name="phone" value="{{customer.PhoneNumber}}" placeholder="טלפון" required>
+            <br>
+            <input type="text" name="address-street" value="{{customer.Street}}" placeholder="רחוב" required>
+            <input type="text" name="address-number" value="{{customer.StreetNumber}}" placeholder="מספר בית" required>
+            <br>
+            <input type="text" name="city" value="{{customer.City}}" placeholder="עיר" required>
+            <input type="text" name="zip" value="{{customer.ZipCode}}" placeholder="מיקוד" required>
+            <br>
+            <p>*כל השדות הינם שדות חובה</p>
+            <p><b>יש לך הערות להזמנה? כאן זה המקום</b></p>
+            <textarea name="comment"></textarea>
+            <div class="payment">
+                <h3>תשלום באמצעות כרטיס אשראי</h3>
+                <div class="full-width">
+                    <label for="cardnumber">מספר כרטיס</label>
+                    <input id="cardnumber" type="text" name="cardnumber"required>
+                    <label for="exp">תוקף</label>
+                    <input id="exp" type="number" name="exp-month" placeholder="07" required>/
+                    <input id="expy" type="number" name="exp-year" placeholder="2021" required>
+                    <br>
+                    <label for="id">תעודת זהות</label>
+                    <input id="id" type="text" name="id" required>
+                    <label for="cvv">קוד אימות</label>
+                    <input id="cvv" type="text" name="cvv" required>
+                    <br>
+                    <label for="total">סה"כ לתשלום</label>
+                    <input id="total" type="text" name="total" value="{{ total_Price }}" readonly>
+                    <br>
+                    <p>*כל השדות הינם שדות חובה</p>
+                    <button type="submit" class="button">תשלום</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block page_body_footer %}{% endblock %}
+
+{% block page_body_js %}
+    <script src="{{ url_for('payment.static', filename='js/payment.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'הזמנות' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('order.static', filename='css/order.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('catalog.static', filename='css/catalog.css') }}"/>
+{% endblock %}
+
+{% block page_body_main %}
+    <br><br><br><br>
+    <main class="page-main">
+        <!-- Tab links -->
+        <div class="tab">
+            <button class="tablinks" onclick="openProduct(event, 'IceCream')" {% if tab_name=="icecream" %} id="defaultOpen" {% endif %}>גלידה</button>
+            <button class="tablinks" onclick="openProduct(event, 'Yogurt')"  {% if tab_name=="yogurt" %} id="defaultOpen" {% endif %}>יוגורט</button>
+            <button class="tablinks" onclick="openProduct(event, 'Cookie')"  {% if tab_name=="cookie" %} id="defaultOpen" {% endif %}>קוקילידה</button>
+        </div>
+        <!-- Tab content -->
+        <div id="IceCream" class="tabcontent">
+            <div class="description">
+                <h3>גלידה</h3>
+                <p>עבור גלידה במשקל חצי קילו גלידה ניתן לבחור בין 1 ל 3 טעמים שונים | מגיע עם 3 גביעים וכפיות | מחיר לחצי קילו: 50 ש"ח
+                    <br><br>
+                    עבור גלידה במשקל קילו ניתן לבחור עד בין 1 ל 5 טעמים שונים | מגיע עם 5 גביעים וכפיות | מחיר לקילו: 100 ש"ח
+                    <br><br>
+                    לפירוט אודות טעם הגלידה הרצוי ניתן ללחוץ על התמונה המתאימה
+                </p>
+            </div>
+
+            <form method="get"  action="/iceCreamOrder" >
+                <fieldset>
+                    <div class="add-product-bar">
+                        <div class="amount-area">
+                            <label for="typeOfIceCreamBox">משקל קופסא בק"ג:</label>
+                            <select onchange="amountSelect()" id="typeOfIceCreamBox" name="amount">
+                                <option id="half" value="0.5">0.5</option>
+                                <option id="one" value="1">1</option>
+                            </select>
+                        </div>
+                        <a href="/shoppingcart" class="button quantity-area"><div><i class="fa fa-shopping-bag"></i> מעבר לקופה </div></a>
+                        <a {% if session['logged_in'] == True %} onclick="checkStatusIceCream()" {% else %} href="/sign_in" {% endif %} class="button quantity-area"><span><i class="fa fa-cart-plus"></i> הוספה לסל </span></a>
+                        <input id="submitIceCream" type="submit" value="submitIceCream"/>
+                        <div class="amount-area quantity-area">
+                            <label for="quantityIceCream">כמות קופסאות מהרכב זה:</label>
+                            <input type="number" id="quantityIceCream" name="quantity" value="1" min="0" step="1"/>
+                        </div>
+
+                    </div>
+                    <div class="amount-text" id="half-text">בחירת טעמי גלידה: בחר בין 1 ל 3 טעמים שונים</div>
+                    <div class="amount-text" id="one-text">בחירת טעמי גלידה: בחר בין 1 ל 5 טעמים שונים</div>
+                    <div class="iceCreams">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="Yogurt" class="tabcontent">
+            <div class="description">
+                <h3>יוגורט</h3>
+                <p>לצד היצע הגלידות הנרחב הקיים בויטרינות, מוגשת אצלנו גלידת קרם יוגורט דלות שומן, במתיקות מעודנת, בעלות מרקם רך וקרמי.
+                    <br><br>
+                    עבור יוגורט במשקל חצי קילו או קילו ניתן לבחור בין 1 ל 3 טעמים שונים | מגיע עם כפיות | מחיר לחצי קילו: 50 ש"ח | מחיר לקילו: 100 ש"ח
+                    <br><br>
+                    לפירוט אודות טעם היוגורט הרצוי ניתן ללחוץ על התמונה המתאימה
+                </p>
+            </div>
+
+            <form method="get"  action="/yogurtOrder" >
+                <fieldset>
+                    <div class="add-product-bar">
+                        <div class="amount-area">
+                            <label for="typeOfYogurtBox">משקל קופסא בק"ג:</label>
+                            <select id="typeOfYogurtBox" name="amount">
+                                <option value="0.5">0.5</option>
+                                <option value="1">1</option>
+                            </select>
+                        </div>
+                        <a href="/shoppingcart" class="button quantity-area"><div><i class="fa fa-shopping-bag"></i> מעבר לקופה </div></a>
+                        <a {% if session['logged_in'] == True %} onclick="checkStatusYogurt()" {% else %} href="/sign_in" {% endif %} class="button quantity-area"><span><i class="fa fa-cart-plus"></i> הוספה לסל </span></a>
+                        <input id="submitYogurt" type="submit" value="submitYogurt"/>
+                        <div class="amount-area quantity-area">
+                            <label for="quantityYogurt">כמות קופסאות מהרכב זה:</label>
+                            <input type="number" id="quantityYogurt" name="quantity" value="1" min="0" step="1"/>
+                        </div>
+                    </div>
+                    <div class="amount-text" >1) בחירת טעמי יוגורט: בחר בין 1 ל 3 טעמים שונים</div>
+                    <div class="yogurts">
+                    </div>
+
+                    <div class="amount-text" >2) בחירת תוספות: בחר עד 10 תוספות שונות</div>
+                    <div class="toppings">
+                    </div>
+
+                </fieldset>
+
+            </form>
+        </div>
+
+        <div id="Cookie" class="tabcontent">
+            <div class="description">
+                <h3>קוקילידה</h3>
+                <p>עבור כל יחידה אחת של קוקילידה יש לבחור סוג גלידה וסוג עוגיה
+                    <br><br>
+                    מחיר ליחידה: 10 ש"ח
+                </p>
+            </div>
+            <form method="get"  action="/cookieOrder" >
+                <fieldset>
+                    <div class="add-product-bar">
+                        <a href="/shoppingcart" class="button quantity-area"><div><i class="fa fa-shopping-bag"></i> מעבר לקופה </div></a>
+                        <a {% if session['logged_in'] == True %} onclick="checkStatusCookie()" {% else %} href="/sign_in" {% endif %} class="button quantity-area"><span><i class="fa fa-cart-plus"></i> הוספה לסל </span></a>
+                        <input id="submitCookie" type="submit" value="submitCookie"/>
+                        <div class="amount-area quantity-area">
+                            <label for="quantityYogurt">כמות קוקילידות מהרכב זה:</label>
+                            <input type="number" id="quantityCookie" name="quantity" value="1" min="0" step="1"/>
+                        </div>
+                    </div>
+                    <div class="amount-text" >1) בחירת העוגיה: בחר את סוג העוגיה הרצויה</div>
+                    <div class="cookies">
+                    </div>
+                    <div class="amount-text">2) בחירת המילוי: בחר את טעם הגלידה הרצוי</div>
+                    <div class="icecreams-filling">
+                    </div>
+                </fieldset>
+
+            </form>
+        </div>
+
+        <!-- The Lightbox -->
+        <div dir='ltr' id="myModal" class="modal">
+            <span class="close cursor" onclick="closeModal()">&times;</span>
+
+            <!-- Caption text taste name -->
+            <div class="caption-container">
+                <h3 id="caption"></h3>
+            </div>
+
+            <div class="modal-content">
+                <!-- Next/previous controls -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+        </div>
+
+    </main>
+    <br>
+
+{% endblock %}
+
+{% block page_body_footer %}{% endblock %}
+
+{% block page_body_js %}
+    <script src="{{ url_for('order.static', filename='js/order.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,81 @@
+<link rel="stylesheet" href="{{ url_for('main_menu.static', filename='css/main-menu.css') }}"/>
+
+<ul class="topnav" >
+    {% if session.logged_in %}
+        <span class = "profile-page">   שלום   {{session.customer['FirstName'] }} ! </span>
+    {% endif %}
+
+    <li><a href="/homepage"
+            {%  if "/" == request.path %}
+           class="active"
+            {% endif %}
+    >דף הבית</a></li>
+
+    <li> <a href="/about"
+            {%  if "/about" == request.path %}
+            class="active"
+            {% endif %}
+    >אודות</a></li>
+
+    <li class="dropdown">
+        <a href="javascript:void(0)"
+                {%  if "/catalog" == request.path %}
+           class="active"
+                {% endif %}
+           class="dropbtn">הטעמים שלנו</a>
+        <div class="dropdown-content">
+            <a href="/catalog?type=ice_cream">גלידה</a>
+            <a href="/catalog?type=yogurt">יוגורט</a>
+        </div>
+        </div>
+    </li>
+
+    <li class="dropdown">
+        <a href="javascript:void(0)"
+                {%  if "/order" == request.path %}
+           class="active"
+                {% endif %}
+           class="dropbtn">הזמנות</a>
+        <div class="dropdown-content">
+            <a href="/order?tab=icecream">הזמנת גלידה</a>
+            <a href="/order?tab=yogurt">הזמנת יוגורט</a>
+            <a href="/order?tab=cookie">הזמנת קוקילידה</a>
+        </div>
+        </div>
+    </li>
+
+    <li><a href="/events"
+            {%  if "/events" == request.path %}
+           class="active"
+            {% endif %}
+    >אירועים</a></li>
+
+    <li> <a href="/contact"
+            {%  if "/contact" == request.path %}
+            class="active"
+            {% endif %}
+    >צרו קשר</a></li>
+
+    {% if session.logged_in %}
+        <li> <a href="/log_out" onclick="return confirm('האם אתה בטוח שאתה רוצה להתנתק?');"> התנתק </a></li>
+
+        <li> <a  href="/profile"
+                {%  if "/profile" == request.path %}
+                 class="active"
+                {% endif %}
+        ><button class="btn icon"> <i class="fa fa-user fa-2x"></i></button></a></li>
+        <li><a href="/shoppingcart"
+                {%  if "/shoppingcart" == request.path %}
+               class="active"
+                {% endif %}
+        > <button class="btn icon"><i class="fa fa-shopping-bag fa-2x"></i></button></a></li>
+    {% else %}
+        <li><a href="/sign_in"
+                {%  if "/sign_in" == request.path %}
+               class="active"
+                {% endif %}
+        >התחברות</a></li>
+    {% endif %}
+</ul>
+
+<script src="{{ url_for('main_menu.static', filename='js/main_menu.js') }}"></script>

@@ -1,0 +1,62 @@
+@import "variables.css";
+
+/* icons library */
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+
+/* main style */
+.page-main{
+    font-family: Calibri ;
+    font-size: 18px;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
+    margin-left: 200px;
+    margin-right: 200px;
+    background-color:white;
+}
+
+.description{
+    background-color: var(--main-bg-color);
+    text-align: center;
+    margin: 0px 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+h1{
+    text-align: center;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.button {
+    border-radius: 10px;
+    background-color: var(--main-border-color);
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 18px;
+    padding: 12px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    /*new*/
+    font-family: Calibri;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.colorlink{
+    color: var(--main-border-color);
+    text-decoration: none;
+}
+
+.button:hover {
+    opacity: 0.5;
+}
+
+
+
+
+

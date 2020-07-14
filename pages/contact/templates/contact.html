@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'צור קשר' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('contact.static', filename='css/contact.css') }}"/>
+{% endblock %}
+
+{% block page_body_main_content %}
+    <h1 class="description">צרו קשר</h1>
+    <form method="POST" action="/contact">
+        <div class="name">
+            <label>שם מלא: </label>
+            <input type="text" name="full-name" placeholder="שם מלא" required>
+        </div>
+        <div class="phone-number">
+            <label>טלפון: </label>
+            <input type="number" name="phone-number" placeholder="טלפון" required>
+        </div>
+        <div class="text-massage">
+            <label>ההודעה שלך: </label>
+            <textarea name="message" placeholder="ההודעה שלך" required></textarea>
+        </div>
+        <div class="button-row">
+            <button type="submit" class="button" onclick="messageSend()">שלח</button>
+        </div>
+    </form>
+    <div class="phone-contact">
+        <b>אפשר גם בטלפון: </b>
+        <span><i class="fa fa-phone"></i> </span>
+        <a class="colorlink" href="tel:0525282684">052-5282684</a>
+    </div>
+<br>
+{% endblock %}
+
+{% block page_body_footer %}{% endblock %}
+
+{% block page_body_js %}
+    <script src="{{ url_for('contact.static', filename='js/contact.js') }}"></script>
+{% endblock %}

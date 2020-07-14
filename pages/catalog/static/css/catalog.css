@@ -1,0 +1,33 @@
+/*reminder - this css is imported also to the order page*/
+
+.tastes-wrapper div{
+    display: inline-block;
+    margin: 12px 12px;
+    text-align: center;
+}
+
+.tastes-wrapper {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.hover-shadow:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+/*this relevant only to catalog*/
+
+.border{
+    border: 2px solid var(--main-border-color);
+    background-color: var( --main-bg-color);
+}
+
+.border.hover-shadow {
+    transition: 0.3s;
+}
+

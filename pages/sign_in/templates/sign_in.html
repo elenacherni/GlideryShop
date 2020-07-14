@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'התחברות' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('sign_in.static', filename='css/sign_in.css') }}"/>
+{% endblock %}
+
+{% block page_body_main_content %}
+    <main class = "general-style">
+        <div class = "form">
+            <h1>התחברות</h1>
+            <form method = "POST" action="/sign_in_form">
+                <div class="signin">
+                    <label for="Email"><b></b></label>
+                    <input type="text" placeholder="כתובת אימייל" name="Email" required>
+
+                    <label for="Password"><b></b></label>
+                    <input type="password" placeholder="סיסמה" name="Password" required>
+
+                    <button type="submit" class ="button">התחבר</button>
+                    {% if tab_name=="true" %}
+                        <span class = "customer-not-found">       כתובת אימייל או סיסמא שגויים  </span>
+                    {% endif %}
+                    <br/>
+                </div>
+            </form>
+
+        </div>
+        <div class="signup">
+            <br/><br/><br/><br/><br/>
+            רוצה להנות מהטבות ומבצעים?
+            <br/>
+            הצטרף למועדון שלנו!
+            <br/>
+            <div class = "signup-btn">
+                <button type="submit" class ="button"> <a class = "signup-btn" href="/sign_up">מצטרף חדש</a></button>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}
+
+{% block page_body_footer %}{% endblock %}
+
+{% block page_body_js %}
+    <script src="{{ url_for('sign_in.static', filename='js/sign_in.js') }}"></script>
+{% endblock %}

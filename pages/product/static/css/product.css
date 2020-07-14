@@ -1,0 +1,24 @@
+
+.border{
+    margin-top: 16px;
+    border: 2px solid var(--main-border-color);
+    display: inline-block;
+    max-width: 804px;
+}
+
+.border div{
+    margin: 16px 0px;
+    padding: 8px 8px;
+    background: var(--main-bg-color);
+}
+
+.product-area{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+
+img{
+    width: 100%;
+}

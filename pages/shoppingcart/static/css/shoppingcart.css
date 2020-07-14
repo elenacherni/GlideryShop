@@ -1,0 +1,36 @@
+
+h1{
+    text-align: center;
+}
+
+
+.summary {
+    -ms-flex: 25%;
+    flex: 25%;
+    padding: 0 16px;
+}
+
+span.price {
+    float: left;
+}
+
+.underline:link{
+    text-decoration-line: underline;
+}
+
+button[name=back-to-order]{
+    float: right;
+}
+
+button[name=move-to-payment]{
+    float: left;
+}
+
+.buttons-area{
+    overflow: auto;
+}
+
+input[type=submit]
+{
+    display: none;
+}

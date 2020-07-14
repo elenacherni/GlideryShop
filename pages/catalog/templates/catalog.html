@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'הטעמים שלנו' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('catalog.static', filename='css/catalog.css') }}"/>
+{% endblock %}
+
+{% block page_body_main_content %}
+    <h1>הטעמים שלנו</h1>
+    <div class="description">
+        {% set Type=flavours[1].Type %}
+        {% if Type == "ice_cream" %}
+            <h3>גלידה</h3>
+            <p>מותג גלידרי - הגלידה האיכותית, חומרי הגלם הטובים בעולם, ללא חומרים משמרים, ללא צבעי מאכל מלאכותיים ומפירות טבעיים בלבד!
+                <br><br>
+                לפירוט אודות טעם הגלידה הרצוי ניתן ללחוץ על התמונה המתאימה
+            </p>
+        {% elif Type == "yogurt" %}
+
+            <h3>יוגורט</h3>
+            <p>מותג גלידרי - הגלידה האיכותית, חומרי הגלם הטובים בעולם, ללא חומרים משמרים, ללא צבעי מאכל מלאכותיים ומפירות טבעיים בלבד!
+                <br><br>
+                לפירוט אודות טעם היוגורט הרצוי ניתן ללחוץ על התמונה המתאימה
+            </p>
+        {% endif %}
+    </div>
+        {% if flavours %}
+            {% for items_batched in flavours|batch(3) %}
+
+                <div class="tastes-wrapper">
+                    {% for flavour in items_batched %}
+                        <div class="border hover-shadow cursor"
+                             onclick="window.location='/product?flavour={{ flavour.FlavourID }}';">
+                            <img src="{{ url_for('static', filename='media/img/flavours/'+flavour.SmallImage) }}"
+                                 alt="{{ flavour.Flavour }}"><br>
+                            <div>{{ flavour.Flavour }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+            {% endfor %}
+        {% endif %}
+
+{% endblock %}
+
+{% block page_body_js %}
+    <script src="{{ url_for('catalog.static', filename='js/catalog.js') }}"></script>
+{% endblock %}

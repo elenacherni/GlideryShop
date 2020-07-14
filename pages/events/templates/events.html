@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'אירועים' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('events.static', filename='css/events.css') }}"/>
+{% endblock %}
+
+{% block page_body_main_content %}
+        <div class="description">
+            <h1>קינוחים לאירועים</h1>
+            <p>
+                <b>
+                רוצים להמתיק את האירוע שלכם?
+                    <br>
+                הגעתם למתקום הנכון!
+                </b>
+                <br>
+            גלידרי משיק ליין דוכנים מתוקים שישדרגו את האירוע שלכם וישאירו טעם מתוק..
+                <br>
+            דוכנים מתוקים לאירועים פרטיים ועיסקיים בבית הלקוח עם מגוון טעמים לבחירתכם:
+                <br>
+            דוכן גלידה, דוכן יוגורט עם מגוון תוספות ודוכן קוקילידה.
+                <br>
+            </p>
+            <form method="POST" action="/events">
+                <div class="contact">
+                    <b>להצעת מחיר: </b>
+                    <input type="text" name="FullName" placeholder="שם מלא" required>
+                    <input type="number" name="PhoneNumber" placeholder="טלפון" required>
+                    <button type="submit" class="button" onclick="messageSend()">שלח</button>
+                    <span><i class="fa fa-phone"></i> </span>
+                    <a class="colorlink" href="tel:0525282684">052-5282684</a>
+                </div>
+            </form>
+        </div>
+        <div class="all-stands">
+            <h2><b>הדוכנים שלנו:</b></h2>
+            <div class="ice-cream-stand clearfix">
+                <section class="icecream-text">
+                    <h3>גלידה לאירועים</h3>
+                    <p>
+                    הדוכן מגיע עם 10 סוגי טעמים לפי בחירת הלקוח (עד שבוע לפני האירוע) מתוך מגוון טעמים.
+                    העגלה מגיע עם מפעיל מקצועי ואדיב שיתפעל את הדוכן למשך כל האירוע.
+                        <br>
+                        <br>
+                    ישנה אפשרות לבחירת 2 תוספות לבחירה: סוכריות צבעוניות, בוטנים, סירופ שוקולד ועוד.
+                    </p>
+                </section>
+                <section class="photo"><img class = "iceCream_photo" src="{{ url_for('static', filename='media/img/iceCream/Logo.png') }}"></section>
+            </div>
+            <div class="yogurt-stand">
+                <section class="photo"><img class = "yogurt_photo" src="{{ url_for('events.static', filename='media/img/yogurt.jpg') }}"></section>
+                <section class="yogurt-text">
+                    <h3>יוגורט עם תוספות</h3>
+                    <p>
+
+                    יוגורט טעים ומרענן עם ערכים תזונאתיים שנוצר על ידינו במיוחד בשבילכם עם מגוון תוספות מטריפות: פירות העונה, מגוון שוקולדים ועוד..
+                    </p>
+                </section>
+            </div>
+            <div class="cookie-stand">
+                <section class="cookie-text">
+                    <h3>קוקילידה לאירועים</h3>
+                    <p>
+                    כדור גלידה במגוון טעמים בין שתי עוגיות נימוחות שיחד ירכיבו את הביס המושלם
+                    </p>
+                </section>
+                <section class="photo"><img class = "cookilida_photo" src="{{ url_for('events.static', filename='media/img/ice-cream-sandwich.jpg') }}"></section>
+            </div>
+        </div>
+{% endblock %}
+
+{% block page_body_footer %}{% endblock %}
+
+{% block page_body_js %}
+    <script src="{{ url_for('events.static', filename='js/events.js') }}"></script>
+{% endblock %}

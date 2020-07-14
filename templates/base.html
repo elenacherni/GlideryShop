@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+ <html lang="{{ page_lang|default("he", true) }}">
+    <head>
+{#    {% block page_head %}#}
+        {# Title #}
+        <title>{{ page_head_title_author|default('גלידרי', true) }} | {{ page_head_title|default('גלידרי', true) }}</title>
+
+        {# Meta tags #}
+        <meta charset="UTF-8"/>
+        {% block page_head_meta %}
+            <meta name="author" content="group15"/>
+            <meta name="description" content="חנות גלידה, קוקילידה ויוגורט"/>
+            <meta name="keywords" content="גלידה, יוגורט, קוקילידה, גלידרי, ice cream, yogurt,glidery"/>
+            {% block page_head_meta_extra %}{% endblock %}
+        {% endblock %}
+
+        {# favicon #}
+        <link rel="icon" href="{{ url_for('static', filename='media/img/favicon/favicon.png') }}"/>
+
+        {# Base #}
+        <base href="/"/>
+
+        {# CSS #}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}"/>
+        {% block page_head_css %}{% endblock %}
+{#    {% endblock %}#}
+    </head>
+    <body dir="rtl">
+        <header>
+                    <div class="color-header">
+                        <img class = "logo-font" src="{{ url_for('static', filename='media/img/general/Glidery.png') }}">
+                        <img class = "logo" src="{{ url_for('static', filename='media/img/general/logo.png') }}" ></div>
+                    <div class="scallop-down"></div>
+                    {% include 'main_menu.html'%}
+                </header>
+            {# Main #}
+
+            {% block page_body_main %}
+                <br><br><br><br>
+                <main class="page-main">
+                    {% block page_body_main_content %}
+
+                    {% endblock %}
+                </main>
+            {% endblock %}
+            <br/>
+            <footer class="page-footer">
+            חפשו אותנו במדיה
+            <a href="https://www.facebook.com" target="_blank" class="btn icon"><i class="fa fa-facebook-square fa-3x"></i></a>
+            <a href = "https://www.instagram.com" target="_blank" class="btn icon"><i class="fa fa-instagram fa-3x"></i></a>
+            </footer>
+
+{#        {% endblock %}#}
+
+        {# JS #}
+        <script src="{{ url_for('static', filename='js/base.js') }}"></script>
+        {% block page_body_js %}{% endblock %}
+    </body>
+</html>

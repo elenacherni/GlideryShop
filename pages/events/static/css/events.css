@@ -1,0 +1,59 @@
+.ice-cream-stand, .yogurt-stand, .cookie-stand{
+    display: flex;
+}
+
+div>section {
+    width: 100%;
+    display: flex;
+    height: 300px;
+    overflow: hidden;
+    color: rgb(254, 254, 254);
+    align-items: center;
+}
+
+section>img{
+    width: 100%;
+}
+
+section>p{
+    padding: 10px 20px;
+}
+
+h3{
+    color: var(--text-color);
+    padding: 10px;
+}
+
+h2{
+    color: var(--main-border-color);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.fa-phone{
+    font-size: 30px;
+    padding: 12px 20px;
+}
+
+
+.contact{
+    font-size: 24px;
+    color: var(--main-border-color);
+}
+
+input{
+    padding: 12px;
+}
+
+.icecream-text{
+    background-color: rgba(192, 0, 99, 0.64);
+}
+
+.yogurt-text{
+    background-color: rgba(127, 219, 255, 0.8);
+}
+
+.cookie-text{
+    background-color: rgb(255, 215, 0);
+}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'הרשמה' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('sign_up.static', filename='css/sign_up.css') }}"/>
+{% endblock %}
+
+{% block page_body_main_content %}
+    <main class= "general-style">
+        <form method = "POST" action="/sign_up_form">
+            <div class="form">
+                <h1>הרשמה לאתר</h1>
+                <p>נא מלא את כל השדות על מנת ליצור משתמש באתר.</p>
+                <hr>
+
+                <label for="email"><b>
+                      כתובת אימייל  </b>
+                    {% if tab_name=="true" %}
+                      <span class = "existing-email">        קיים משתמש עבור כתובת אימייל זו   </span>
+                    {% endif %}
+                </label>
+                <input type="text" name="Email" required>
+
+                <label for="first-name"><b>שם פרטי</b></label>
+                <input type="text" name="FirstName" required>
+
+                <label for="last-name"><b>שם משפחה</b></label>
+                <input type="text" name="LastName" required>
+
+                <label for="date-of-birth"><b>תאריך לידה</b></label>
+                <input type="date" name="DateOfBirth" max="2002-12-31" required>
+
+                <label for="psw"><b> סיסמה (עד 8 תווים) </sub> </b></label>
+                <input type="password" name="Password" maxlength="8" required>
+
+                <div class="clearfix">
+                    <button type="submit" class="button submit-btn">הירשם</button>
+                    <br/> <br/>
+                    <a class = "return-btn" href="/sign_in"><button type="button" class=" return-btn button ">חזור</button></a>
+                </div>
+            </div>
+        </form>
+    </main>
+{% endblock %}
+
+{% block page_body_footer %}{% endblock %}
+
+{% block page_body_js %}
+    <script src="{{ url_for('sign_up.static', filename='js/sign_up.js') }}"></script>
+{% endblock %}

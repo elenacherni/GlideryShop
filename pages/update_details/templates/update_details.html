@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'עדכון פרטים' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('update_details.static', filename='css/update_details.css') }}"/>
+{% endblock %}
+
+{% block page_body_main_content %}
+    <main class = "general-style">
+            <form method = "POST" action="/update_details">
+                <div class="form">
+                    <h1>עדכון פרטים</h1>
+                    <hr>
+                    <label for="email"><b>כתובת אימייל</b></label>
+                    <input type="text" name="Email" value={{customer.Email}} readonly>
+
+                    <label for="first-name"><b>שם פרטי</b></label>
+                    <input type="text" name="FirstName" value={{customer.FirstName}} required>
+
+                    <label for="last-name"><b>שם משפחה</b></label>
+                    <input type="text" name="LastName" value={{customer.LastName}} required>
+
+                    <label for="city"><b>עיר</b></label>
+                    <input type="text" name="City" maxlength="50" value={{customer.City}} >
+
+                    <label for="street"><b>רחוב</b></label>
+                    <input type="text" name="Street" maxlength="50" value={{customer.Street}} >
+
+                    <label for="streetNumber"><b>מספר בית</b></label>
+                    <input type="int" name="StreetNumber" value={{customer.StreetNumber}} >
+
+                    <label for="zipCode"><b>מיקוד</b></label>
+                    <input type="text" name="ZipCode" value={{customer.ZipCode}}>
+
+                    <label for="PhoneNumber"><b>מספר טלפון</b></label>
+                    <input type="text" name="PhoneNumber" value={{customer.PhoneNumber}}>
+
+                    <label for="psw"><b>סיסמה </b></label>
+                    <input type="password" name="Password" value={{customer.Password}} id="myInput"  required>
+                    <input type="checkbox" onclick="showPsw()">הצג סיסמה
+                    <br/>
+                    <br/>
+
+                    <div class="clearfix">
+                        <button type="submit" class ="button">עדכן</button>
+                        <a class = "return-btn" href="/profile"><button type="button" class=" return-btn button ">בטל וחזור</button></a>
+                    </div>
+                </div>
+            </form>
+    </main>
+
+{% endblock %}
+
+{% block page_body_footer %}{% endblock %}
+
+{% block page_body_js %}
+    <script src="{{ url_for('update_details.static', filename='js/update_details.js') }}"></script>
+{% endblock %}
+
+
+

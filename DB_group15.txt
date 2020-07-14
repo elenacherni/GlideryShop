@@ -1,0 +1,274 @@
+CREATE TABLE flavours(
+FlavourID INT,
+Flavour VARCHAR(50),
+Description VARCHAR(9000),
+SmallImage VARCHAR(500),
+BigImage VARCHAR(500),
+Type VARCHAR(50),
+PRIMARY KEY (FlavourID)
+);
+
+CREATE TABLE toppings(
+ToppingID INT,
+ToppingName VARCHAR(50),
+SmallImage VARCHAR(500),
+BigImage VARCHAR(500),
+PRIMARY KEY (ToppingID)
+);
+
+CREATE TABLE cookies(
+CookieID INT,
+CookieType VARCHAR(50),
+SmallImage VARCHAR(500),
+BigImage VARCHAR(500),
+PRIMARY KEY (CookieID)
+);
+
+CREATE TABLE products_prices(
+ProductName VARCHAR(50),
+Price FLOAT,
+PRIMARY KEY (ProductName)
+);
+
+CREATE TABLE customers(
+Email VARCHAR(50),
+Password VARCHAR(8),
+FirstName VARCHAR(50),
+LastName VARCHAR(50),
+DateOfBirth DATE,
+City VARCHAR(50),
+Street VARCHAR(50),
+StreetNumber INT,
+ZipCode VARCHAR(7),
+PhoneNumber VARCHAR(50),
+PRIMARY KEY (Email)
+);
+
+CREATE TABLE occasion_offers(
+OfferID BIGINT,
+FullName VARCHAR(50),
+PhoneNumber VARCHAR(50),
+PRIMARY KEY (OfferID)
+);
+
+CREATE TABLE contacts(
+ContactID INT,
+FullName VARCHAR(50),
+PhoneNumber VARCHAR(50),
+Message VARCHAR(50),
+PRIMARY KEY (ContactID)
+);
+
+CREATE TABLE shopping_carts(
+ShoppingCartID BIGINT,
+DT DATETIME,
+Email varchar(50),
+PRIMARY KEY (ShoppingCartID),
+FOREIGN KEY (Email) REFERENCES customers(Email)
+);
+
+
+CREATE TABLE products (
+ProductID BIGINT,
+ProductName VARCHAR(50),
+Amount INT,
+ShoppingCartID BIGINT,
+PRIMARY KEY (ProductID),
+FOREIGN KEY (ShoppingCartID) REFERENCES shopping_Carts(ShoppingCartID)
+);
+
+CREATE TABLE box_flavours(
+ProductID BIGINT,
+FlavourID INT,
+PRIMARY KEY (ProductID,FlavourID),
+FOREIGN KEY (ProductID) REFERENCES products(ProductID),
+FOREIGN KEY (FlavourID) REFERENCES flavours(FlavourID)
+);
+
+CREATE TABLE yogurtbox_toppings(
+   ProductID BIGINT,
+   ToppingID INT,
+   PRIMARY KEY (ProductID,ToppingID),
+   FOREIGN KEY (ProductID) REFERENCES products(ProductID),
+   FOREIGN KEY (ToppingID) REFERENCES toppings(ToppingID)
+);
+
+CREATE TABLE icecream_sandwiches(
+ProductID BIGINT,
+CookieID INT,
+FlavourID INT,
+PRIMARY KEY (ProductID),
+FOREIGN KEY (ProductID) REFERENCES products(ProductID),
+FOREIGN KEY (CookieID) REFERENCES cookies(CookieID),
+FOREIGN KEY (FlavourID) REFERENCES flavours(FlavourID)
+);
+
+CREATE TABLE orders(
+OrderID BIGINT,
+ccOwnerID VARCHAR(9),
+ccNumber VARCHAR(16),
+ccCVS VARCHAR(3),
+ccExpirationMonth VARCHAR(2),
+ccExpirationYear VARCHAR(4),
+Comment VARCHAR(500),
+ShoppingCartID BIGINT,
+OrderDate DATE,
+TotalPrice FLOAT,
+PRIMARY KEY (OrderID),
+FOREIGN KEY (ShoppingCartID) REFERENCES shopping_Carts(ShoppingCartID)
+);
+
+-- Dumping data for table `cookies`
+
+INSERT INTO group15.cookies (CookieID, CookieType, SmallImage, BigImage) VALUES (1000,'עגיית שוקולד חלב צ''יפס', 'choco_cookie.png', 'choco_cookie_full.png');
+INSERT INTO group15.cookies (CookieID, CookieType, SmallImage, BigImage) VALUES (1001,'עוגיה בהירה שוקולד צ''יפס
+', 'whiteChocolateChip.jpg', '‏‏whiteChocolateChip_full.jpg');
+INSERT INTO group15.cookies (CookieID, CookieType, SmallImage, BigImage) VALUES (1002,'עוגיה משולבת שוקולד לבן וחום', 'combination_cookie.jpg', 'combination_cookie_full.jpeg');
+INSERT INTO group15.cookies (CookieID, CookieType, SmallImage, BigImage) VALUES (1003,'עוגיה קהה שוקולד צ''יפס
+', 'BrownChocolateChip.jpg', '‏‏BrownChocolateChip_full.jpg');
+INSERT INTO group15.cookies (CookieID, CookieType, SmallImage, BigImage) VALUES (1004,'עוגיית מילקה', 'milka_cookie.png', 'milka_cookie_full.png');
+INSERT INTO group15.cookies (CookieID, CookieType, SmallImage, BigImage) VALUES (1005,'עוגיית סוכר
+', 'sugarCookie.jpg', '‏‏sugarCookie_full.jpg');
+
+--
+-- Dumping data for table `toppings`
+
+INSERT INTO group15.toppings (ToppingID, ToppingName, SmallImage, BigImage) VALUES (16,'גרעיני רימון
+', 'pomegranateBerries.png', 'pomegranateBerries_full.JPG');
+INSERT INTO group15.toppings (ToppingID, ToppingName, SmallImage, BigImage) VALUES (17,'עוגיות לוטוס', 'lotus.jpg', 'lotus_full.jpg');
+INSERT INTO group15.toppings (ToppingID, ToppingName, SmallImage, BigImage) VALUES (18,'קוביות מנגו
+', 'mango.jpg', 'mango_full.jpg');
+INSERT INTO group15.toppings (ToppingID, ToppingName, SmallImage, BigImage) VALUES (19,'שבבי קוקוס', 'cocus.jpg', 'cocus_full.jpg');
+INSERT INTO group15.toppings (ToppingID, ToppingName, SmallImage, BigImage) VALUES (20,'שוקולד צ''יפס
+', 'choclateChip.png', 'choclateChip_full.png');
+INSERT INTO group15.toppings (ToppingID, ToppingName, SmallImage, BigImage) VALUES (21,'תותים', 'tut.jpg', 'tut_full.jpg');
+
+-- Dumping data for table `flavours`
+
+INSERT INTO group15.flavours (FlavourID,Flavour, Description, SmallImage, BigImage, Type) VALUES (1,'אגוזי לוז', 'שילוב נצחי בין אגוזי לוז מפיאמונטה (אגוזי הפררו רושה), קקאו ולרונה משובח ושוקולד חלב עשיר', 'bachu.jpg', 'bachu_full.jpg', 'ice_cream');
+INSERT INTO group15.flavours (FlavourID,Flavour, Description, SmallImage, BigImage, Type) VALUES (2,'וניל צרפתי', 'בלנד של תרמילי וניל מטהיטי, מדגסקר ואינדונזיה המתבשלים בחלב, שמנת וחלמונים כמיטב המסורת הצרפתית
+', 'vanill.jpg', 'vanill_full.jpg', 'ice_cream');
+INSERT INTO group15.flavours (FlavourID,Flavour, Description, SmallImage, BigImage, Type) VALUES (3,'יוגורט אשכולית אדומה', 'יוגורט פרשי ומיוחד, המופק מאשכוליות סנרייז אדומות מאזור עמק חפר, הנקטפות בשיא העונה ומתובלות בקמפרי אמיתי, שמעניק אפטר טייסט ומוסיף למרירות הנעימה. יוגורט למביני עניין!
+', 'eshcolit.jpg', 'eshcolit_full.jpg', 'yogurt');
+INSERT INTO group15.flavours (FlavourID,Flavour, Description, SmallImage, BigImage, Type) VALUES (4,'יוגורט בננה בראוניז', 'שילוב ייחודי של יוגורט איכותי, בראוניז ובננה.', 'banana.jpg', 'banana_full.jpg', 'yogurt');
+INSERT INTO group15.flavours (FlavourID, Flavour, Description, SmallImage, BigImage, Type) VALUES (5, 'יוגורט מי זאהר
+', 'יוגורט טרי, פריחת התפוזים של שכם, מרקחת משמש מזן ארומקוט (משק בן דור) ופיסטוקים איראנים קלויים בעדינות
+', 'meizahar.jpg', 'meizahar_full.jpg', 'yogurt');
+INSERT INTO group15.flavours (FlavourID,Flavour, Description, SmallImage, BigImage, Type) VALUES (6,'יוגורט פירות טרופיים
+', 'שילוב ייחודי של יוגורט איכותי, מנגו, קוקוס, בננה ופסיפלורה. 50% פירות אקזוטיים טבעיים, היוגורט עם כ- 3% שומן בלבד, ללא צבעי מאכל, ללא חומרים משמרים מפירות טבעיים בלבד! שילוב חמצמץ מתקתק שיוצר טעם מושלם
+', 'tropic.jpeg', 'tropic_full.jpeg', 'yogurt');
+INSERT INTO group15.flavours (FlavourID,Flavour, Description, SmallImage, BigImage, Type) VALUES (7,'יוגורט פירות יער
+', 'שילוב של יוגורט איכותי,פטל אדום , דומדמניות שחורות (קסיס, נואר דה בורגון) ונגיעות של בויסנברי - גרגר יער שחור
+', 'berries.jpg', 'berries_full.jpg', 'yogurt');
+INSERT INTO group15.flavours (FlavourID,Flavour, Description, SmallImage, BigImage, Type) VALUES (8,'מלבי', 'גלידת מלבי - גלידת שמנת המובססת על הקינוח המסורתי מטורקיה ומשלבת פיסטוק מגזיאנטפ ונגיעות מסטיקה ושורש סחלב מיוון', 'malabi.jpg', 'malabi_full.jpg', 'ice_cream');
+INSERT INTO group15.flavours (FlavourID,Flavour, Description, SmallImage, BigImage, Type) VALUES (9,'פבלובה', 'גלידת שכבות המורכבת מקרם מרנג עשיר ופריך ומסורבה פירות יער', 'pavlova.jpg', 'pavlova_full.jpg', 'ice_cream');
+INSERT INTO group15.flavours (FlavourID,Flavour, Description, SmallImage, BigImage, Type) VALUES (10,'פיסטוק', 'פיסטוקים מהטרואר המשובח בעולם. גדלים על אדמה וולקנית בסביבת הר געש כבוי בסיציליה ומתאפיינים בצבע עז וארומות פירותיות, אדמתיות ומעושנות', 'fistuk.jpg', 'fistuk_full.jpg', 'ice_cream');
+INSERT INTO group15.flavours (FlavourID,Flavour, Description, SmallImage, BigImage, Type) VALUES (11,'קרם יוגורט
+', 'היוגורט הינו בעל אחוזי שומן נמוכים- 2.8% בלבד וערך קלורי של 120 קק"ל ל-100 גרם בלבד. היוגורט מופק מחלב טרי בלבד ומיוצר בתהליך טבעי ומבוקר של תסיסה בו הופך רוב הלקטוז (סוכר החלב) לחומצה לקטית (חומצת חלב) אשר מקנה ליוגורט את הטעם והריח הטיפוסיים והופכת את החלב לנוח יותר לעיכול
+', 'basic.png', 'basic_full.png', 'yogurt');
+INSERT INTO group15.flavours (FlavourID,Flavour, Description, SmallImage, BigImage, Type) VALUES (12,'קרם עוגיות', 'המון עוגיות אוריאו פריכות פוגשות חלב ושמנת טריים', 'oreoCream.jpg', 'oreoCream_full.jpg', 'ice_cream');
+
+-- Dumping data for table `products_prices`
+
+INSERT INTO group15.products_prices (ProductName, Price) VALUES ('גלידה 0.5 קילו', 50);
+INSERT INTO group15.products_prices (ProductName, Price) VALUES ('גלידה 1 קילו', 100);
+INSERT INTO group15.products_prices (ProductName, Price) VALUES ('יוגורט 0.5 קילו', 50);
+INSERT INTO group15.products_prices (ProductName, Price) VALUES ('יוגורט 1 קילו', 100);
+INSERT INTO group15.products_prices (ProductName, Price) VALUES ('קוקילידה', 10);
+
+
+-- Dumping data for table `contacts`
+--
+
+LOCK TABLES `contacts` WRITE;
+/*!40000 ALTER TABLE `contacts` DISABLE KEYS */;
+INSERT INTO `contacts` VALUES (1,'חגית בודה ','0524561024','אשמח שתחזרו אליי'),(2,'ילנה טשרניחובסקי','052455524','שלום'),(3,'גל מרגלית יצחקי','0521111024','יש לי שאלות בנוגע לגלידה '),(4,'יוסי יוסי','052456777','כמה עולה דוכן?'),(5,'יעל בר זהר','0523456789','אפשר שתכינו לי גלידה בטעם סוכריות קופצות?'),(6,'מיכל ינאי','0523478903','אשמח שתחזרו אליי בהקדם. תודה ויום טוב');
+/*!40000 ALTER TABLE `contacts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+--
+-- Dumping data for table `customers`
+--
+
+LOCK TABLES `customers` WRITE;
+/*!40000 ALTER TABLE `customers` DISABLE KEYS */;
+INSERT INTO `customers` VALUES ('elena@gmail.com','45454545','ילנה','טשרניחובסקי','1994-06-22','רמלה','סוכות',12,'545454','054666777'),('gal@gmail.com','11111111','גל','יצחקי','1994-12-17','טבריה','המרד',22,'555','0544461024'),('hagitbuda@gmail.com','testpsw','חגית','בודה','1993-09-10','ירושלים','קשאני אליעזר',6,'8467347','0524561024'),('iceCreamLover@gmail.com','icecream','דן','כהן','2002-12-09','אשדוד','רגר',23,'456578','052666677'),('miloTheCharmingDog@walla.com','1234567','מיילו','פלפולפיל','2002-07-07','יפו','הכלבים',32,'3367347','0524333024'),('sofi@gmail.com','12121212','סופי','כהן','2002-12-02','ירוחם','התמר',8,'585','0584461024'),('tomer.levi@gmail.com','password','תומר','לוי','1995-07-21','צפת','תפוז',5,'6666','0524566666');
+/*!40000 ALTER TABLE `customers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+--
+-- Dumping data for table `shopping_carts`
+--
+
+LOCK TABLES `shopping_carts` WRITE;
+/*!40000 ALTER TABLE `shopping_carts` DISABLE KEYS */;
+INSERT INTO `shopping_carts` VALUES (1,'2020-07-06 18:29:53','hagitbuda@gmail.com'),(2,'2020-07-06 18:54:20','miloTheCharmingDog@walla.com'),(3,'2020-07-06 19:02:55','gal@gmail.com'),(4,'2020-07-06 19:05:46','elena@gmail.com'),(5,'2020-07-06 19:09:02','iceCreamLover@gmail.com'),(6,'2020-07-06 19:16:19','tomer.levi@gmail.com'),(7,'2020-07-06 19:30:23','sofi@gmail.com');
+/*!40000 ALTER TABLE `shopping_carts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+--
+--
+-- Dumping data for table `occasion_offers`
+--
+
+LOCK TABLES `occasion_offers` WRITE;
+/*!40000 ALTER TABLE `occasion_offers` DISABLE KEYS */;
+INSERT INTO `occasion_offers` VALUES (1,'חגית בודה','0524561024'),(2,'ילנה טשרניחובסקי','052455524'),(3,'גל מרגלית יצחקי','0521111024'),(4,'יוסי יוסי','052456777'),(5,'יעל בר זהר','0523456789'),(6,'מיכל ינאי','0523478903');
+/*!40000 ALTER TABLE `occasion_offers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+--
+-- Dumping data for table `orders`
+--
+
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (1,'333334455','123456','545','5','2020','',1,'2020-07-06',150),(2,'444333222','23232323','232','07','2021','',2,'2020-07-06',80),(3,'333444555','444555','343','6','2020','',3,'2020-07-06',250),(4,'333222','3334443','454','4','2021','להתקשר כשמגיעים',4,'2020-07-06',160),(5,'54545434','555444','444','5','2022','',5,'2020-07-06',150),(6,'44455','4456777','545','5','2020','',7,'2020-07-06',100),(7,'5666','5555','55','8','2020','',6,'2020-07-06',320);
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `products`
+--
+
+LOCK TABLES `products` WRITE;
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` VALUES (1,'גלידה 0.5 קילו',1,6),(2,'גלידה 0.5 קילו',1,6),(3,'גלידה 0.5 קילו',1,6),(4,'גלידה 1 קילו',1,6),(5,'יוגורט 0.5 קילו',1,6),(6,'יוגורט 1 קילו',1,6),(7,'קוקילידה',1,6),(8,'קוקילידה',3,6),(9,'קוקילידה',4,6),(10,'קוקילידה',1,6),(11,'קוקילידה',1,6),(12,'קוקילידה',1,6),(13,'קוקילידה',4,6),(14,'גלידה 0.5 קילו',1,6),(15,'גלידה 1 קילו',1,6),(16,'יוגורט 0.5 קילו',1,6),(17,'יוגורט 1 קילו',1,6),(18,'יוגורט 1 קילו',1,6);
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `yogurtbox_toppings`
+--
+
+LOCK TABLES `yogurtbox_toppings` WRITE;
+/*!40000 ALTER TABLE `yogurtbox_toppings` DISABLE KEYS */;
+INSERT INTO `yogurtbox_toppings` VALUES (5,16),(5,17),(17,17),(6,18),(16,18),(18,18),(5,20),(17,20);
+/*!40000 ALTER TABLE `yogurtbox_toppings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+
+
+-- Dumping data for table `box_flavours`
+--
+
+LOCK TABLES `box_flavours` WRITE;
+/*!40000 ALTER TABLE `box_flavours` DISABLE KEYS */;
+INSERT INTO `box_flavours` VALUES (3,1),(4,1),(15,1),(1,2),(4,2),(14,2),(17,3),(6,5),(16,5),(5,6),(5,7),(16,7),(17,7),(2,8),(4,9),(14,9),(4,10),(14,10),(18,11),(2,12),(4,12),(15,12);
+/*!40000 ALTER TABLE `box_flavours` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `icecream_sandwiches`
+--
+
+LOCK TABLES `icecream_sandwiches` WRITE;
+/*!40000 ALTER TABLE `icecream_sandwiches` DISABLE KEYS */;
+INSERT INTO `icecream_sandwiches` VALUES (7,1000,1),(8,1001,2),(9,1002,12),(10,1004,10),(11,1003,9),(12,1005,12),(13,1005,12);
+/*!40000 ALTER TABLE `icecream_sandwiches` ENABLE KEYS */;
+UNLOCK TABLES;

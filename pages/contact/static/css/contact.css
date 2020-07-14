@@ -1,0 +1,53 @@
+form{
+    padding: 100px 100px;
+    margin: auto;
+}
+
+label{
+    color:var(--main-border-color);
+    font-size: 24px;
+    font-weight: bold;
+    width: 30%;
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+input, textarea{
+    margin-top: 10px;
+    width: 70%;
+    float: left;
+    font-family: Calibri ;
+}
+
+input{
+    height: 40px;
+}
+
+textarea{
+    resize: none;
+    height: 200px;
+}
+
+
+.text-massage::after{
+    display: table;
+    content: "";
+    clear: both;
+}
+
+.button-row{
+    float: left;
+}
+
+.phone-contact{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--main-border-color);
+}
+
+.fa-phone{
+    font-size: 30px;
+    padding: 12px 20px;
+}

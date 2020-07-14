@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% set page_head_title = 'עמוד מוצר' %}
+
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('product.static', filename='css/product.css') }}"/>
+{% endblock %}
+
+{% block page_body_main_content %}
+    <h1>הטעמים שלנו</h1>
+    <div class="description">
+        <p>מותג גלידרי - הגלידה האיכותית, חומרי הגלם הטובים בעולם, ללא חומרים משמרים, ללא צבעי מאכל מלאכותיים ומפירות טבעיים בלבד!
+        </p>
+    </div>
+    <div class="product-area">
+        {% if flavour %}
+            <div class="border">
+                <h4>{{ flavour.Flavour }}</h4>
+                <img src="{{ url_for('static', filename='media/img/flavours/'+ flavour.BigImage) }}" alt="{{ flavour.Flavour }}">
+                <div>{{ flavour.Description }}</div>
+            </div>
+        {% endif %}
+    </div>
+    <br/>
+{% endblock %}
+
+{% block page_body_footer %}{% endblock %}
+
+{% block page_body_js %}
+    <script src="{{ url_for('product.static', filename='js/product.js') }}"></script>
+{% endblock %}
