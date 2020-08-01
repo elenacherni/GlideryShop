@@ -1,1 +1,0 @@
-mysql+pymysql://oh81p4mrgv1w1d1f:zpyvu10frdybqgcx@zpfp07ebhm2zgmrm.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/spde55bnmd14d82d
